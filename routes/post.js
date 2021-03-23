@@ -17,6 +17,15 @@ router.get('/',(req,res) =>{
     })
 })
 
+router.get("/detail/:id",(req,res) =>{
+    let id = req.params.id;
+    Post.findById(id,(err,post)=>{
+        if(err)return res.json({success:false,error:err})
+        return res.json({success:true,post})
+        }
+    )
+})
+
 router.put('/update/:id',(req,res) =>{
     Post.findByIdAndUpdate(
         req.params.id,{
