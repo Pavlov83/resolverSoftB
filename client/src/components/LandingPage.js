@@ -16,7 +16,7 @@ class LandingPage extends Component{
   }
 
   getPosts(){
-    axios.get('http://localhost:5000/posts')
+    axios.get('/posts')
          .then((res)=>{
             if(res.data.success){
               this.setState({
