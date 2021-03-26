@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React,{Component} from 'react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 class CreatePost extends Component{
 
@@ -71,17 +73,28 @@ class CreatePost extends Component{
                            onChange={this.handleInputChange}
                            />
                 </div>
-
                 <div className="form-group">
-                    <label>Description</label>
-                    <input type="text"
-                           className="form-control"
-                           name="description"
-                           placeholder="Enter description"
-                           value={this.state.description}
-                           onChange={this.handleInputChange}
-                           />       
-                </div>
+                <label>Description</label>
+                <CKEditor
+                    editor={ ClassicEditor }
+                    data={this.state.description}
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        this.setState({description:data})
+                    } }
+                    onBlur={ ( event, editor ) => {
+                        console.log( 'Blur.', editor );
+                    } }
+                    onFocus={ ( event, editor ) => {
+                        console.log( 'Focus.', editor );
+                    } }
+                />
+                </div>      
+                
               <br></br>  
                 <div>
                 <button className="btn btn-success" type="submit" onClick={this.onSubmit}>

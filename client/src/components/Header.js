@@ -12,11 +12,19 @@ import React, { Component } from 'react'
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="/">All posts <span class="sr-only">
+          
+          
         </span>
+        
+        
         </a>
+        
       </li>
+      
     </ul>
+    
   </div>
+
 </nav>
                 
             

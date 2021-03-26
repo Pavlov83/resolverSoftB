@@ -33,7 +33,7 @@ class  DetailPage extends Component {
       
         <dt className="col-sm-2">Description </dt>
         <dd className="col-sm-10">
-          <p>{description}</p>
+          <p dangerouslySetInnerHTML={{ __html:description}} ></p>
           
         </dd>
         </dl>

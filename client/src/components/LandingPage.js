@@ -28,14 +28,44 @@ class LandingPage extends Component{
 
   }
 
+  onDelete = (id) =>{
+    axios.delete(`/posts/delete/${id}`)
+         .then(res=> alert(res.data.title + ' deleted successfully'))
+         this.getPosts();
+  }
+
+  filterContent(posts, searchTerm){
+    const result = posts.filter(post =>post.title.toLowerCase().includes(searchTerm)||
+    post.description.toLowerCase().includes(searchTerm)||
+    post.title.toLowerCase().includes(searchTerm));
+    this.setState({posts:result});
+  }
+
+  handleTextSearch =(e)=>{
+    const searchTerm = e.currentTarget.value;
+    axios.get('/posts')
+    .then((res)=>{
+       if(res.data.success){
+        this.filterContent(res.data.posts,searchTerm)
+
+       }
+    })
+  }
+
   render(){
     return(
     <div className="container"> 
-      
+      <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+      onChange={this.handleTextSearch}
+      ></input>
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
       {this.state.posts.map((post,index) =>{
-         
+       
      return (
-     <div  > 
+     <div  className="container"> 
+     
         <table class="table">
           <thead>
             <tr>
@@ -52,13 +82,14 @@ class LandingPage extends Component{
               <td>
               <a href={`/posts/${post._id}`}>{post.title}</a>
               </td>
-              <td>{post.description}</td>
+              <td dangerouslySetInnerHTML={{ __html:post.description}} ></td>
               <td>{post.postCategory}</td>
               <td>
-                <a className= "btn btn-warning" href='#'>
+                <a className= "btn btn-warning" href={`/edit/${post._id}`}>
                   <i className="fas fa-edit"></i>&nbsp;Edit
                 </a>&nbsp;
-                <a className= "btn btn-danger" href='#'>
+                <a className= "btn btn-danger" href='#' 
+                onClick={()=> this.onDelete(post._id)}>
                   <i class="far fa-trash-alt"></i>&nbsp;Delete
                 </a>
               </td>           
