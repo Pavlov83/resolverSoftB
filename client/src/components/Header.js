@@ -11,7 +11,7 @@ import React, { Component } from 'react'
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/">All posts <span class="sr-only">(current)
+        <a class="nav-link" href="/">All posts <span class="sr-only">
         </span>
         </a>
       </li>

@@ -35,11 +35,11 @@ class LandingPage extends Component{
       {this.state.posts.map((post,index) =>{
          
      return (
-     <div  className="container"> 
+     <div  > 
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col"></th>
               <th scope="col">Title</th>
               <th scope="col">Description</th>
               <th scope="col">Category</th>
@@ -67,7 +67,7 @@ class LandingPage extends Component{
         </table>
       </div>   
            
-      )})}  <button className="btn btn-success" ><a href="/add">Add Post</a></button>
+      )})}  <button className="btn btn-dark" ><a href="/add">Add Post</a></button>
       
       </div> 
     
